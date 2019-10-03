@@ -1,0 +1,50 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="card shadow">
+  <div class="card-header">
+    <h1>Jenkins</h1>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Job</th>
+          <th>Status</th>
+          <th>Última vez </th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for job in context.jobs %}
+        <tr>
+          <td>{{ job.name }}</td>
+          <td>
+            {% if job.healthReport|length > 0 %}
+            <img src="http://localhost:8081/static/76a210f1/images/32x32/{{ job.healthReport.0.iconUrl }}" alt="icon">
+            {% else %}
+            Sem Status Disponível
+            {% endif %}
+          </td>
+          <td>
+            {% if not job.firstBuild %}
+            Nunca buildou
+            {% elif job.lastSuccessfulBuild.number == job.nextBuildNumber-1 %}
+            Sucesso
+            {% endif %}
+          </td>
+          <td>
+            <a class="mr-2" href="/jenkins/build/{{ job.fullName }}">
+              <i class="fas fa-redo-alt"></i>
+            </a>
+            <a href="#">
+              <i class="fas fa-pen"></i>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

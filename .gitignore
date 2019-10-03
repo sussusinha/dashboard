@@ -1,0 +1,9 @@
+
+# virtualenv
+env/
+
+# pycache
+__pycache__
+
+# vscode settings
+.vscode/
