@@ -20,4 +20,4 @@ app.register_blueprint(gitlab)
 app.register_blueprint(auth)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0')
