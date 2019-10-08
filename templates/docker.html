@@ -16,23 +16,27 @@
         </tr>
       </thead>
       <tbody>
+        {% for c in context.containers %}
         <tr>
-          <td>==ID DO CONTAINER==</td>
           <td>
-            ==NOME DO CONTAINER==
+            {{ c.short_id }}
           </td>
           <td>
-            ==STATUS DO SERVIÇO==
+            {{ c.name }}
           </td>
           <td>
-            <a href="#">
-              <i style="color: green" class="fas fa-play"></i>
+            {{ c.status }}
+          </td>
+          <td>
+            <a href="/docker/{{ c.short_id }}/start">
+              <span>start</span>
             </a>
-            <a href="#">
-              <i style="color: red" class="fas fa-stop"></i>
+            <a href="/docker/{{ c.short_id }}/stop">
+              <span>stop</span>
             </a>
           </td>
         </tr>
+        {% endfor %}
       </tbody>
     </table>
   </div>

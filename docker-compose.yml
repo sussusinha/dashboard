@@ -1,0 +1,15 @@
+version: "3"
+services:
+  # application:
+  #   build: .
+  #   ports:
+  #     - 5000:5000
+  gitlab:
+    image: gitlab/gitlab-ce
+    ports:
+      - 443:443
+      - 8000:80
+  jenkins:
+    image: jenkins/jenkins
+    ports:
+      - 8080:8080

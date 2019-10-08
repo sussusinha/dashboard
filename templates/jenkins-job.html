@@ -6,15 +6,16 @@
     <h1>Jenkins</h1>
   </div>
   <div class="card-body">
-    <h3>== NOME DO JOB ==</h3>
-    <form>
+    <h3>{{ context.job.name }}</h3>
+    <form method="POST" action="/jenkins/build/{{ context.job.name }}">
       <div class="form-group">
-        <textarea class="input-group" rows="4">
-    
+        <textarea class="input-group" name="config" rows="4">
+          {{ context.job.config }}
         </textarea>
       </div>
-      <button class="btn btn-primary">Salvar</button>
+      <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
   </div>
 </div>
 {% endblock %}
+
