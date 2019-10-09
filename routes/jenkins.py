@@ -23,7 +23,7 @@ def jenkins_action():
     try:
         conn = jenkins.Jenkins(**opts)
     except:
-        return flask.jsonify(err, 500)
+        return flask.jsonify(err), 500
 
     jobs = [
         conn.get_job_info(j['fullname']) for j in conn.get_jobs()
@@ -43,12 +43,12 @@ def jenkins_job_action(jobid):
     try:
         conn = jenkins.Jenkins(**opts)
     except:
-        return flask.jsonify(err, 500)
+        return flask.jsonify(err), 500
     
     if flask.request.method == 'POST':
         config = flask.request.form.get('config') or jenkins.EMPTY_CONFIG_XML
         conn.reconfig_job(jobid, config.strip())
-        
+
     context = {
         'job': {
             'name': jobid,
