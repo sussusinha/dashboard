@@ -9,11 +9,13 @@ isort==4.3.21
 itsdangerous==1.1.0
 Jinja2==2.10.1
 lazy-object-proxy==1.4.2
+ldap3==2.6.1
 MarkupSafe==1.1.1
 mccabe==0.6.1
 multi-key-dict==2.0.3
 pbr==5.4.3
 pkg-resources==0.0.0
+pyasn1==0.4.7
 pylint==2.4.2
 python-dotenv==0.10.3
 python-jenkins==1.5.0

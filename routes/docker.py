@@ -2,10 +2,14 @@
 import flask
 import docker
 
+from services import decorators
+
 
 blueprint = flask.Blueprint('docker', __name__)
 
+
 @blueprint.route('/docker', methods=[ 'GET', 'POST' ])
+@decorators.login_required
 def docker_action():
 
     conn = None
