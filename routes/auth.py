@@ -69,7 +69,7 @@ def auth_action():
             return flask.redirect('/docker')
 
     context = {
-
+        'route_is_public': True
     }
     return flask.render_template('sign-in.html', context=context)
 
@@ -108,7 +108,7 @@ def sign_up_action():
             return flask.redirect('/sign-in')
             
     context = {
-
+        'route_is_public': True
     }
 
     return flask.render_template('sign-up.html', context=context)

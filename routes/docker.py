@@ -1,4 +1,6 @@
 
+import logging
+
 import flask
 import docker
 
@@ -20,7 +22,7 @@ def docker_action():
         return flask.jsonify({
             'mensagem': 'Erro de conexão com o Docker'
         }), 500
-
+    
     context = {
         'containers': conn.containers.list(all=True)
     }
@@ -43,7 +45,9 @@ def start_container(containerid):
 
     if container:
         container.start()
-
+        flask.flash('Container {} iniciado'.format(containerid), 'success')
+        logging.info('Container {} iniciado'.format(containerid))
+        
     return flask.redirect('/docker')
 
 @blueprint.route('/docker/<containerid>/stop', methods=[ 'GET' ])
@@ -62,5 +66,6 @@ def stop_container(containerid):
 
     if container:
         container.stop()
+        flask.flash('Container {} pausado'.format(containerid), 'warning')
 
     return flask.redirect('/docker')
